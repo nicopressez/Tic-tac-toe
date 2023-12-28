@@ -30,7 +30,7 @@ function playRound(event,index, player){
  player.changeTurn();;
 }
 
- // Add every win possibility and check if the array equals any of them.
+ // If someone's winning, the game stops and winner is announced
 
 function checkWinner ()
 {
@@ -40,7 +40,8 @@ function checkWinner ()
         if (gameBoard.gameGrid[condition[0]] !== "" && gameBoard.gameGrid[a] === gameBoard.gameGrid[b] && 
             gameBoard.gameGrid[b] === gameBoard.gameGrid[c])
 
-        {console.log (gameBoard.gameGrid[a] + "wins");}
+        {console.log (gameBoard.gameGrid[a] + "wins");
+         gameStatus.stopGame()}
     }
 }
 
@@ -49,7 +50,10 @@ function findTurn()
 {if (Player1.turn) {return Player1}
 else {return Player2};}
 
-const toggleGame = (() => {
+const gameStatus = (() => {
+
+    let gameActive = true;
+
     const gridZero = document.getElementById("gridZero");
     const gridOne = document.getElementById("gridOne");
     const gridTwo = document.getElementById("gridTwo");
@@ -61,27 +65,26 @@ const toggleGame = (() => {
     const gridEight = document.getElementById("gridEight");
 
 function startGame (){
-    gridZero.addEventListener('click', (event) => playRound(event,0, findTurn()));
-    gridOne.addEventListener('click', (event) => playRound(event,1, findTurn()));
-    gridTwo.addEventListener('click', (event) => playRound(event,2, findTurn()));
-    gridThree.addEventListener('click', (event) => playRound(event,3, findTurn()));
-    gridFour.addEventListener('click', (event) => playRound(event,4, findTurn()));
-    gridFive.addEventListener('click', (event) => playRound(event,5, findTurn()));
-    gridSix.addEventListener('click', (event) => playRound(event,6, findTurn()));
-    gridSeven.addEventListener('click', (event) => playRound(event,7, findTurn()));
-    gridEight.addEventListener('click', (event) => playRound(event,8, findTurn()));}
+gameActive = true;
+    gridZero.addEventListener('click',(event) => {if(gameActive) {playRound(event,0, findTurn())}});
+    gridOne.addEventListener('click', (event) => {if(gameActive) {playRound(event,1, findTurn())}});
+    gridTwo.addEventListener('click', (event) => {if(gameActive) {playRound(event,2, findTurn())}});
+    gridThree.addEventListener('click', (event) => {if(gameActive) {playRound(event,3, findTurn())}});
+    gridFour.addEventListener('click', (event) => {if(gameActive) {playRound(event,4, findTurn())}});
+    gridFive.addEventListener('click', (event) => {if(gameActive) {playRound(event,5, findTurn())}});
+    gridSix.addEventListener('click', (event) => {if(gameActive) {playRound(event,6, findTurn())}});
+    gridSeven.addEventListener('click', (event) => {if(gameActive) {playRound(event,7, findTurn())}});
+    gridEight.addEventListener('click', (event) => {if(gameActive) {playRound(event,8, findTurn())}});}
 
 function stopGame(){
-
-
+ gameActive = false;
 
 
 }
   return {stopGame, startGame}
 })()
 
-toggleGame.startGame();
+gameStatus.startGame();
 
-// Todo: When there's a winner, the game freezes and winner is displayed
 // Todo: Game also ends if all grids are played and nobody won
 // Todo: Add a restart button at the end of each game
