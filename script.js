@@ -20,10 +20,21 @@ const gameBoard = (() => {
     return {setGridSign, gameGrid, consoleGrid}
 })();
 
-// When a player selects a grid, the array's index changes to the player's sign
-// Todo: add a way to get the grid's corresponding index in the array 
-
 
 function playRound(index, player)
-{gameBoard.setGridSign(index, player.getSign())
- gameBoard.consoleGrid()}
+{gameBoard.setGridSign(index, player.getSign());
+ gameBoard.consoleGrid();
+ checkWinner();}
+
+ // Add every win possibility and check if the array equals any of them.
+
+function checkWinner ()
+{
+    const winConditions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    for (const condition of winConditions) {
+       const [a, b, c]  = condition;
+        if (gameBoard.gameGrid[condition[0]] !== "" && gameBoard.gameGrid[a] === gameBoard.gameGrid[b] && 
+            gameBoard.gameGrid[b] === gameBoard.gameGrid[c])
+        {console.log (gameBoard.gameGrid[a] + "wins");}
+    }
+}
