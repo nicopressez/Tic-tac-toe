@@ -10,13 +10,15 @@ const gridEight = document.getElementById("gridEight");
 
 
 
-const Player = (sign) => 
+const Player = (sign,starting) => 
 { this.sign =  sign;
+  this.turn = starting;
   function getSign(){return sign;}
- return {getSign}}
+  function changeTurn(){this.turn = !this.turn;}
+ return {getSign, changeTurn,turn}}
 
-const Player1 = Player("X");
-const Player2 = Player("O");
+const Player1 = Player("X", true);
+const Player2 = Player("O", false);
 
 const gameBoard = (() => {
  const gameGrid = ["","","","","","","","",""];
@@ -24,20 +26,17 @@ const gameBoard = (() => {
  function setGridSign (index, sign){
     gameGrid[index] = sign;}
 
- function consoleGrid (){
-    console.log(gameGrid[0] + "||" + gameGrid[1] + "||" + gameGrid[2] )
-    console.log(gameGrid[3] + "||" + gameGrid[4] + "||" + gameGrid[5] )
-    console.log(gameGrid[6] + "||" + gameGrid[7] + "||" + gameGrid[8] )
- }
-    return {setGridSign, gameGrid, consoleGrid}
+    return {setGridSign, gameGrid,}
 })();
 
 
 function playRound(event,index, player){
  gameBoard.setGridSign(index, player.getSign());
- gameBoard.consoleGrid();
  event.target.textContent = gameBoard.gameGrid[index];
  checkWinner();
+ if (player = Player1){Player2.changeTurn()}
+ else if (player = Player2){Player1.changeTurn()}
+ player.changeTurn();;
 }
 
  // Add every win possibility and check if the array equals any of them.
@@ -53,14 +52,18 @@ function checkWinner ()
     }
 }
 
-gridZero.addEventListener('click', (event) => playRound(event,0, Player2));
-gridOne.addEventListener('click', (event) => playRound(event,1, Player2));
-gridTwo.addEventListener('click', (event) => playRound(event,2, Player2));
-gridThree.addEventListener('click', (event) => playRound(event,3, Player2));
-gridFour.addEventListener('click', (event) => playRound(event,4, Player2));
-gridFive.addEventListener('click', (event) => playRound(event,5, Player2));
-gridSix.addEventListener('click', (event) => playRound(event,6, Player2));
-gridSeven.addEventListener('click', (event) => playRound(event,7, Player2));
-gridEight.addEventListener('click', (event) => playRound(event,8, Player2));
-
 // Add a round system: Player1 plays, then Player2 etc
+
+function findTurn()
+{if (Player1.turn) {return Player1}
+else {return Player2};}
+
+gridZero.addEventListener('click', (event) => playRound(event,0, findTurn()));
+gridOne.addEventListener('click', (event) => playRound(event,1, findTurn()));
+gridTwo.addEventListener('click', (event) => playRound(event,2, findTurn()));
+gridThree.addEventListener('click', (event) => playRound(event,3, findTurn()));
+gridFour.addEventListener('click', (event) => playRound(event,4, findTurn()));
+gridFive.addEventListener('click', (event) => playRound(event,5, findTurn()));
+gridSix.addEventListener('click', (event) => playRound(event,6, findTurn()));
+gridSeven.addEventListener('click', (event) => playRound(event,7, findTurn()));
+gridEight.addEventListener('click', (event) => playRound(event,8, findTurn()));
