@@ -20,8 +20,10 @@
           <div class="grid" id="gridSeven"></div>
           <div class="grid" id="gridEight"></div>
         </section>
-        <dialog><form method="dialog"><h1>Game over!</h1>
-        <button id="restart" onclick="gameStatus.startGame()">Restart</button></form></dialog>
+        <dialog><form method="dialog">
+            <h1 id="gameResult" class="gameResult"></h1>
+            <button id="restart" onclick="gameStatus.startGame()">Restart</button>
+        </form></dialog>
         
         <script src="./script.js" async defer></script>
     </body>

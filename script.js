@@ -29,6 +29,7 @@ function playRound(event,index, player){
  gameBoard.setGridSign(index, player.getSign());
  event.target.textContent = gameBoard.gameGrid[index];
  checkWinner();
+ checkFullBoard();
 
  if (player = Player1){Player2.changeTurn()}
  else if (player = Player2){Player1.changeTurn()}
@@ -45,15 +46,19 @@ function checkWinner ()
         if (gameBoard.gameGrid[condition[0]] !== "" && gameBoard.gameGrid[a] === gameBoard.gameGrid[b] && 
             gameBoard.gameGrid[b] === gameBoard.gameGrid[c])
 
-        {console.log (gameBoard.gameGrid[a] + "wins");
+        {document.getElementById("gameResult").textContent = `${gameBoard.gameGrid[a]} won!`;
          gameStatus.stopGame()}
-    }
-    if (gameBoard.isGridFull()) {
-        gameStatus.stopGame();
-        console.log("tie");
+
     }
 }
 
+function checkFullBoard() {
+    if (gameBoard.isGridFull()) {
+    gameStatus.stopGame();
+        if (document.getElementById("gameResult").textContent == "")
+        {document.getElementById("gameResult").textContent = "It's a tie!"}
+    }
+}
 
 function findTurn()
 {if (Player1.turn) {return Player1}
