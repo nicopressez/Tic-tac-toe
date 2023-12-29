@@ -64,8 +64,13 @@ const gameStatus = (() => {
     const gridSeven = document.getElementById("gridSeven");
     const gridEight = document.getElementById("gridEight");
 
+    const allGrids = [gridZero, gridOne,gridTwo,gridThree,gridFour,gridFive,gridSix,gridSeven,gridEight]
+
 function startGame (){
-gameActive = true;
+    gameActive = true;
+    allGrids.forEach(grid => { grid.textContent = "";});
+    gameBoard.gameGrid.forEach(grid => {grid = "";})
+
     gridZero.addEventListener('click',(event) => {if(gameActive) {playRound(event,0, findTurn())}});
     gridOne.addEventListener('click', (event) => {if(gameActive) {playRound(event,1, findTurn())}});
     gridTwo.addEventListener('click', (event) => {if(gameActive) {playRound(event,2, findTurn())}});
@@ -78,8 +83,7 @@ gameActive = true;
 
 function stopGame(){
  gameActive = false;
-
-
+document.querySelector('dialog').showModal();
 }
   return {stopGame, startGame}
 })()
@@ -87,4 +91,3 @@ function stopGame(){
 gameStatus.startGame();
 
 // Todo: Game also ends if all grids are played and nobody won
-// Todo: Add a restart button at the end of each game
