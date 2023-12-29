@@ -60,7 +60,10 @@ const roundProcess = (() => {
             {document.getElementById("gameResult").textContent = "It's a tie!"}
         }
     }
-    return {playRound}})();
+    function findTurn()
+      {if (Player1.turn) {return Player1}
+       else {return Player2};}
+    return {playRound,findTurn}})();
 
 const gameStatus = (() => {
 
@@ -80,18 +83,19 @@ const gameStatus = (() => {
 
     function startGame (){
      gameActive = true;
+     document.getElementById("gameResult").textContent = "";
      allGrids.forEach(grid => { grid.textContent = "";});
      gameBoard.gameGrid.forEach(function(value, index, array) {array[index] = "";})
 
-     gridZero.addEventListener('click',(event) => {if(gameActive) {roundProcess.playRound(event,0, findTurn())}});
-     gridOne.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,1, findTurn())}});
-     gridTwo.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,2, findTurn())}});
-     gridThree.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,3, findTurn())}});
-     gridFour.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,4, findTurn())}});
-     gridFive.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,5, findTurn())}});
-     gridSix.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,6, findTurn())}});
-     gridSeven.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,7, findTurn())}});
-     gridEight.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,8, findTurn())}});}
+     gridZero.addEventListener('click',(event) => {if(gameActive) {roundProcess.playRound(event,0, roundProcess.findTurn())}});
+     gridOne.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,1, roundProcess.findTurn())}});
+     gridTwo.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,2, roundProcess.findTurn())}});
+     gridThree.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,3, roundProcess.findTurn())}});
+     gridFour.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,4, roundProcess.findTurn())}});
+     gridFive.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,5, roundProcess.findTurn())}});
+     gridSix.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,6, roundProcess.findTurn())}});
+     gridSeven.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,7, roundProcess.findTurn())}});
+     gridEight.addEventListener('click', (event) => {if(gameActive) {roundProcess.playRound(event,8, roundProcess.findTurn())}});}
 
     function stopGame(){
      gameActive = false;
@@ -121,7 +125,3 @@ const gameStatus = (() => {
 
   return {stopGame, startGame, initiateGame}
 })()
-
-function findTurn()
-{if (Player1.turn) {return Player1}
-else {return Player2};}
