@@ -1,21 +1,160 @@
+:root
+{
+    --main-color1: #e5ebea;
+    --main-color2: #e23c32;
+    --main-color3: #25272a;
+}
+
 *
 {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    border: 1px solid black;
+    font-family: 'Oswald', sans-serif;
+}
+
+body
+{
+    background-color: var(--main-color1);
 }
 
 .gridSection
 {
+    position: absolute;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
-    border: 1px solid black;
     height: 500px;
     width: 500px;
+    border: 1px solid black;
+    background-color: white;
+    margin-left: 450px;
 }
 
 .grid
-{width: 100%;
+{
+ font-family: sans-serif;
+ width: 100%;
  height: 100%;
- font-size: 9em;}
+ font-size:8em;
+ border: 1px solid black;}
+
+ .head
+ {
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    text-align: center;
+    border-bottom: 3px solid var(--main-color3);
+    margin-bottom: 50px;
+ }
+
+ .header
+ {
+    color:  var(--main-color2);
+    font-size: 4rem;
+    font-weight: bold;
+    padding-top: 0px;
+    padding-bottom: 5px;
+ }
+
+ .players
+ {
+   margin-left: 1000px;
+ }
+
+ #player1Info, #player2Info
+ {
+    font-size: 2rem;
+ }
+
+ #player1Name, #player2Name
+ {
+    color: var(--main-color2);
+ }
+
+ dialog
+ {
+    margin: auto auto;
+    z-index: 1;
+ }
+
+ .definePlayers
+ {
+    border-radius: 3%;
+    padding-top: 30px;
+    text-align: center;
+    width: 400px;
+    height: 400px;
+    font-size: 2rem;
+    margin-bottom: 350px;
+ }
+
+ .definePlayers input
+ {
+    font-size: 2rem;
+    margin-bottom: 35px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+ }
+
+ .definePlayers label
+ {
+    margin-top: 15px;
+ }
+
+ .definePlayers h4
+ {
+    padding-bottom: 8px;
+ }
+
+ .initiateBtn
+ {
+    background-color: green;
+    font-size: 2rem;
+    padding-bottom: 50px;
+    width: 200px;
+    display: block;
+    margin: 0 auto ;
+ }
+
+ .initiateBtn:hover
+ {
+    filter:brightness(90%);
+ }
+
+ .endGameDialog
+ {
+    font-size: 2rem;
+    padding-top: 40px;
+    text-align: center;
+    width: 350px;
+    height: 250px;
+    margin-bottom: 400px;
+    border-radius: 3%;
+ }
+
+ .endGameDialog button
+ {
+    margin-top: 20px;
+    width: 150px;
+    font-size: 2rem;
+    background-color: red;
+ }
+
+ .endGameDialog button:hover
+ {
+    filter:brightness(90%);
+ }
+
+ .grid:hover
+{
+ background-color: aliceblue;
+}
+
+dialog::backdrop
+{
+    backdrop-filter: blur(5px);
+}

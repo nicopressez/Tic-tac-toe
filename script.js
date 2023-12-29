@@ -1,4 +1,5 @@
 // Setup player and info
+document.getElementById('definePlayers').showModal();
 
 let Player1, Player2;
 
