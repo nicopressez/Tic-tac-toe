@@ -1,13 +1,29 @@
 // Setup player and info
-const Player = (sign,starting) => 
-{ this.sign =  sign;
+
+let Player1, Player2;
+
+const Player = (sign,starting,name) => 
+{ this.name = name;
+  this.sign =  sign;
   this.turn = starting;
+
   function getSign(){return sign;}
   function changeTurn(){this.turn = !this.turn;}
- return {getSign, changeTurn,turn}}
 
-const Player1 = Player("X", true);
-const Player2 = Player("O", false);
+ return {getSign, changeTurn,turn,name}}
+
+function initiatePlayerInfo(){
+const player1Name = document.getElementById("player1Name");
+const player1Sign = document.getElementById("player1Sign");
+player1Name.textContent = Player1.name;
+player1Sign.textContent = Player1.getSign();
+
+const player2Name = document.getElementById("player2Name");
+const player2Sign = document.getElementById("player2Sign");
+player2Name.textContent = Player2.name;
+player2Sign.textContent = Player2.getSign();
+}
+
 
 const gameBoard = (() => {
  const gameGrid = ["","","","","","","","",""];
@@ -97,13 +113,17 @@ function startGame (){
 
 function stopGame(){
  gameActive = false;
-document.querySelector('dialog').showModal();
+document.getElementById('endGameDialog').showModal();
 }
   return {stopGame, startGame}
 })()
 
-gameStatus.startGame();
+function initiateGame(form){
+     Player1 = Player("X", true, `${form.player1NewName.value}`);
+     Player2 = Player("O", false, `${form.player2NewName.value}`);
+    
+     document.getElementById('definePlayers').close();
 
-// Todo: Show on dialog who won the round
-// Todo : Add possibility to name player
-// Todo: add choice of sign
+     gameStatus.startGame();
+     initiatePlayerInfo();
+}

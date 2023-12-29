@@ -9,6 +9,20 @@
         <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
+        <dialog open id="definePlayers">
+            <form type ="dialog" id="definePlayersInfo">
+                <h4>Player 1 name</h4>
+                <label id="player1ChooseName">Name:
+                    <input type="text" id="player1NewName" name="player1NewName" value="Player1">
+                </label>
+                <h4>Player 2 name</h4>
+                <label id="player2ChooseName">Name:
+                    <input type="text" id="player2NewName" name="player2NewName" value="Player2">
+                </label>
+                <input id="initiateBtn" value ="Confirm" type="button" onclick="initiateGame(this.form)">
+            </form>
+        </dialog>
+
         <section id="gridSection" class="gridSection">
           <div class="grid" id="gridZero"></div>
           <div class="grid" id="gridOne"></div>
@@ -20,10 +34,20 @@
           <div class="grid" id="gridSeven"></div>
           <div class="grid" id="gridEight"></div>
         </section>
-        <dialog><form method="dialog">
+        <dialog id="endGameDialog"><form method="dialog">
             <h1 id="gameResult" class="gameResult"></h1>
             <button id="restart" onclick="gameStatus.startGame()">Restart</button>
         </form></dialog>
+        <section id="players">
+        <div id="player1Info">
+            <h3 id="player1Name"></h3>
+            <p id="player1Sign"></p>
+        </div>
+        <div id="player2Info">
+            <h3 id="player2Name"></h3>
+            <p id="player2Sign"></p>
+        </div>
+        </section>
         
         <script src="./script.js" async defer></script>
     </body>
