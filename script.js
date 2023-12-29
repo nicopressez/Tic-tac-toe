@@ -69,7 +69,7 @@ const gameStatus = (() => {
 function startGame (){
     gameActive = true;
     allGrids.forEach(grid => { grid.textContent = "";});
-    gameBoard.gameGrid.forEach(grid => {grid = "";})
+    gameBoard.gameGrid.forEach(function(value, index, array) {array[index] = "";})
 
     gridZero.addEventListener('click',(event) => {if(gameActive) {playRound(event,0, findTurn())}});
     gridOne.addEventListener('click', (event) => {if(gameActive) {playRound(event,1, findTurn())}});
@@ -91,3 +91,6 @@ document.querySelector('dialog').showModal();
 gameStatus.startGame();
 
 // Todo: Game also ends if all grids are played and nobody won
+// Todo: Show on dialog who won the round
+// Todo : Add possibility to name player
+// Todo: add choice of sign
