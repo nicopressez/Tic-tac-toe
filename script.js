@@ -1,3 +1,4 @@
+// Setup player and info
 const Player = (sign,starting) => 
 { this.sign =  sign;
   this.turn = starting;
@@ -14,7 +15,11 @@ const gameBoard = (() => {
  function setGridSign (index, sign){
     gameGrid[index] = sign;}
 
-    return {setGridSign, gameGrid,}
+ function isGridFull(){
+    return gameGrid.every(grid => grid !== "")
+ }
+
+    return {setGridSign, gameGrid, isGridFull}
 })();
 
 
@@ -30,7 +35,7 @@ function playRound(event,index, player){
  player.changeTurn();;
 }
 
- // If someone's winning, the game stops and winner is announced
+ // If someone's winning or grid is full, the game stops and winner is announced
 
 function checkWinner ()
 {
@@ -42,6 +47,10 @@ function checkWinner ()
 
         {console.log (gameBoard.gameGrid[a] + "wins");
          gameStatus.stopGame()}
+    }
+    if (gameBoard.isGridFull()) {
+        gameStatus.stopGame();
+        console.log("tie");
     }
 }
 
@@ -90,7 +99,6 @@ document.querySelector('dialog').showModal();
 
 gameStatus.startGame();
 
-// Todo: Game also ends if all grids are played and nobody won
 // Todo: Show on dialog who won the round
 // Todo : Add possibility to name player
 // Todo: add choice of sign
